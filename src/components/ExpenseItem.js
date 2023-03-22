@@ -7,6 +7,12 @@ import './ExpenseItem.css';
 
 const [title, setTitle]=useState(props.title);
 const [visible,setVisible]=useState(true);
+const [count,setCount]=useState(0);
+
+const incrementCounter=()=>{
+    setCount(count+1);
+    console.log(count);
+};
 
 const removeElement=()=>{
     setVisible((expense)=>!expense);
@@ -24,6 +30,7 @@ const removeElement=()=>{
                 <h2>{title}</h2>
                 <div className ='expense-item_price'>${props.amount}</div>
             </div>
+            <button onClick={incrementCounter}>Add Expense</button>
             <button onClick={clickHandler}>Change title</button>
             <button onClick={removeElement}>DeleteExpense</button>
             
