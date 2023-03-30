@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Expenses from './components/Expenses';
-import ExpenseItem from './components/ExpenseItem';
+import Expenses from './components/Expenses/Expenses';
+import ExpenseItem from './components/Expenses/ExpenseItem';
+import NewExpenses from './components/NewExpenses/NewExpenses';
+import ExpenseFrom from './components/NewExpenses/ExpenseForm';
 
-const App=()=> {
   
       // <div className="App">
       //   <header className="App-header">
-       const expenses =[
+       const DUMMY_EXPENSES =[
         {
           id:'e1',
           title: 'Toilet Paper',
@@ -38,21 +39,28 @@ const App=()=> {
           location:'Deradun',
         },
       ];
-        return React.createElement('div', {},
-        React.createElement('h2',{}, "Lets get started!"),
-        React.createElement(Expenses,{items:expenses})
-        );
-
-        
-          
-          
-//          <div>
-//           <h2>Let get strted</h2>
-//           <Expenses items={expenses}
-//            />
-// </div>
-
+        // return React.createElement('div', {},
+        // React.createElement('h2',{}, "Lets get started!"),
+        // React.createElement(Expenses,{items:expenses})
         // );
+        const App=()=> {
+          const[expenses,setExpenses]=
+          useState(DUMMY_EXPENSES);
+
+        const addExpenseHandler = (expense)=>{
+          setExpenses((prevExpenses)=>{
+            return [expense,...prevExpenses]
+          });
+        };
+
+          return(
+         <div>
+          <NewExpenses onAddExpenses={addExpenseHandler}/>
+          <Expenses items={expenses}
+          />
+ </div>
+
+         );
 
       }
 
